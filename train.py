@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 from tqdm import tqdm
 
-data = pd.read_csv('/opt/ml/test.csv', index_col=0) # 데이터 전처리 후 추가
+data = pd.read_csv('/opt/ml/remove_outlier.csv', index_col=0) # 데이터 전처리 후 추가
 num_column = data.shape[1]
 data = data.to_numpy()
 data = torch.tensor(data, dtype=torch.float32)
@@ -23,19 +23,19 @@ class nft_dataset(Dataset):
         return len(self.data)
 
     def __getitem__(self, idx):
-        x = self.data[idx,:-1]
-        y = self.data[idx,-1]
+        x = self.data[idx,1:-1]
+        y = self.data[idx,-1].view(1)
         return x,y
 
 dataset = nft_dataset(data)
-split=random_split(dataset, [int(len(dataset)*0.8), int(len(dataset)-len(dataset)*0.8)])
+split=random_split(dataset, [int(len(dataset)*0.8), len(dataset)-int(len(dataset)*0.8)])
 trainset,valset = split[0],split[1]
 
 
 #dataloader
 train_loader = DataLoader(
     trainset,
-    batch_size=1,
+    batch_size=64,
     num_workers=0,
     shuffle=True
 )
@@ -52,7 +52,12 @@ class linear_model(nn.Module):
     def __init__(self):
         super().__init__()
         self.model = nn.Sequential(
-            nn.Linear(num_column-1,1)
+            nn.Linear(num_column-2,num_column-2),
+            nn.Linear(num_column-2,7),
+            nn.Linear(7,7),
+            nn.Linear(7,3),
+            nn.Linear(3,3),
+            nn.Linear(3,1),
         )
 
     def forward(self, data):
@@ -67,35 +72,42 @@ criterion = nn.MSELoss()
 optimizer = optim.Adam(model.parameters())
 
 # train
-epochs= 50
+epochs= 30
 model.train()
 min_loss = np.inf
-for epoch in range(epochs):
-    for i, data in tqdm(enumerate(train_loader)):
+loss_list=[]
+for epoch in tqdm(range(epochs)):
+    running_loss = 0
+    for i, data in enumerate(train_loader):
         x, y = data
         x, y = x[0].cuda() , y[0].cuda()
         optimizer.zero_grad()
         outputs = model(x)
         loss = criterion(outputs, y)
+        running_loss += loss
         loss.backward()
         optimizer.step()
-        if loss < min_loss:
-            min_loss = loss
-            best_model = deepcopy(model.state_dict())
+    loss_list.append(running_loss)
+    if running_loss < min_loss:
+        min_loss = running_loss
+        best_model = deepcopy(model.state_dict())
 
  
 with torch.no_grad():
     model.load_state_dict(best_model)
     model.to(device)
     model.eval()
-    for val_batch in tqdm(val_loader):
+    pred_list=[]
+    y_list=[]
+    for val_batch in val_loader:
         x, y = val_batch
         x = x[0].to(device)
         y = y[0].to(device)
         outputs = model(x)
-    print(outputs,y)
+        pred_list.append(outputs)
+        y_list.append(y)
     
-# TODO 결과 저장하기
-# TODO argparser 만들기 (데이터, epoch ...)
-# TODO preprocessing 만들기
-# TODO 평가 방법 생각? MSE? loss를 MSE로 설정 
+# result = pd.DataFrame()
+# result['pred'] = pred_list
+# result['y'] = y_list
+# result
