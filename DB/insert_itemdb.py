@@ -31,50 +31,54 @@ headers = {
     "X-API-KEY": config['opensea']['key']
 }
 logger = logging.getLogger()
-for token_ID in range(0, 100000):
+for token_ID in range(2700, 100000):
     #url = f"https://api.opensea.io/api/v1/asset/{asset_contract_address}/{token_ID}/?include_orders=false"
     url = f"https://api.opensea.io/api/v1/assets?token_ids={token_ID}&collection_slug=otherdeed&order_direction=desc&limit=20&include_orders=false"
 
     response = requests.get(url, headers=headers)
     response = response.json()['assets'][0]
-    try:
+    #try:
         #if "success" not in response:
-        if response != []:
-            value_list = list()
-            column_list = ["id", "token_id", "asset_contract_address", "image_url", "image_preview_url", "image_thumbnail_url", "image_original_url", "external_link"]
-            
-            for col in column_list:
-                if col not in ["asset_contract_address", 'id'] and response[col] is None:
-                    value_list.append("\'\'")
-                elif col in ["id", "token_id"]:
-                    value_list.append(f"{response[col]}")
-                elif col == "asset_contract_address":
-                    value_list.append(f"\'{response['asset_contract']['address']}\'")
-                else:
-                    value_list.append(f"\'{response[col]}\'")
+    if response != []:
+        value_list = list()
+        column_list = ["id", "token_id", "asset_contract_address", "image_url", "image_preview_url", "image_thumbnail_url", "image_original_url", "external_link"]
+        
+        for col in column_list:
+            if col not in ["asset_contract_address", 'id'] and response[col] is None:
+                value_list.append("\'\'")
+            elif col in ["id", "token_id"]:
+                value_list.append(f"{response[col]}")
+            elif col == "asset_contract_address":
+                value_list.append(f"\'{response['asset_contract']['address']}\'")
+            else:
+                value_list.append(f"\'{response[col]}\'")
 
-            for trait in response['traits']:
-                #print(f"{trait['trait_type']} : {trait['value']}")
-                if type(trait['value'])==str and '\'' in trait['value'] :
-                    trait['value'] = trait['value'].replace('\'','＇')
-                    #value_list.append(f"\'{response[col]}\'")
-                column_list.append(raw_to_colname[trait['trait_type']])
-                value_list.append(f"\'{trait['value']}\'")
-            
-            column_cmd = ", ".join(column_list)
-            value_cmd = ", ".join(value_list)
-
-            cursor.execute(f"INSERT INTO {db_name}.ITEM ({column_cmd}) VALUES ({value_cmd})")
-            conn.commit()
-        else:
-            print(token_ID)
-
-    except  Exception as e:
+        for trait in response['traits']:
+            #print(f"{trait['trait_type']} : {trait['value']}")
+            if type(trait['value'])==str and '\'' in trait['value'] :
+                trait['value'] = trait['value'].replace('\'','＇')
+                #value_list.append(f"\'{response[col]}\'")
+            column_list.append(raw_to_colname[trait['trait_type']])
+            value_list.append(f"\'{trait['value']}\'")
+        
         column_cmd = ", ".join(column_list)
         value_cmd = ", ".join(value_list)
+        try:
+            cursor.execute(f"INSERT INTO {db_name}.ITEM ({column_cmd}) VALUES ({value_cmd})")
+            conn.commit()
+        except  Exception as e:
+            logger.error(e)
+            # logger.exception(e)
+        finally : pass
+    else:
+        print(token_ID)
 
-        print(f"INSERT INTO {db_name}.ITEM ({column_cmd}) VALUES ({value_cmd})")
-        logger.error(e)
-        raise
-        #logger.exception(e)
-    finally: pass
+    # except  Exception as e:
+    #     column_cmd = ", ".join(column_list)
+    #     value_cmd = ", ".join(value_list)
+
+    #     print(f"INSERT INTO {db_name}.ITEM ({column_cmd}) VALUES ({value_cmd})")
+    #     logger.error(e)
+    #     raise
+    #     #logger.exception(e)
+    #finally: pass
