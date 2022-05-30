@@ -1,0 +1,4 @@
+.vscode/
+.devcontainer/
+*.pyc
+dev_config.yaml
