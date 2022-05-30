@@ -58,7 +58,8 @@ PAGE = 0
 #     time.sleep(3)
 
 logger = logging.getLogger()
-for i in range(379-PAGE):
+for i in range(381-PAGE):
+#for i in range(2):
     #print(i, end=" ")
 
     table = driver.find_element_by_xpath('/html/body/div[1]/main/div[3]/div/div[2]/div/div[2]/div[2]/div/div[3]/div[2]/table')
@@ -72,7 +73,7 @@ for i in range(379-PAGE):
             conn.commit()
         except  Exception as e:
             logger.error(e)
-            logger.exception(e)
+            #logger.exception(e)
         finally: pass
 
     
