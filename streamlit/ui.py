@@ -95,7 +95,7 @@ if st.session_state.NFT_name == 'Otherdeed for Otherside':
     if 'token_num' not in st.session_state:
         st.session_state.token_num = -1
     st.title("Otherdeed for Otherside")
-    ordinal_number = ['첫', '두', '세', '네', '다섯', '여섯', '일곱', '여덟', '아홉x', '열']
+    ordinal_number = ['첫', '두', '세', '네', '다섯', '여섯', '일곱', '여덟', '아홉', '열']
     st.subheader('찾고 싶은 아이템을 입력해 주세요!!!')
 
     select_c=st.columns((4,1))
