@@ -2,7 +2,7 @@ from cProfile import label
 from logging import PlaceHolder
 import streamlit as st
 import requests
-
+import re
 # from model import nft_dataset, linear_model, save_model, Train, get_prediction
 
 # backend = "http://fastapi:8000/"
@@ -25,13 +25,37 @@ from torch.utils.data import DataLoader, Dataset, random_split
 def delete_none(datas: dict):
     will_be_removed = []
     for data in datas:
+        if data == 'eastern_resource_tier':
+            datas['eastern_resource_tier'] = datas['eastern_resource_tier'].strip()
+
         if not datas[data]:
             will_be_removed.append(data)
+        
     for i in will_be_removed:
         datas.pop(i)
-    return datas
 
-def change_counter(num): st.session_state.token_num=num
+def get_related_tokens(datas: dict):
+    related_token_list = ['token_id_1','token_id_2','token_id_3','token_id_4','token_id_5',
+                                    'token_id_6','token_id_7','token_id_8','token_id_9','token_id_10',]
+    related_tokens = []
+    for related_token in related_token_list:
+        related_tokens.append(datas.pop(related_token))
+    return related_tokens
+
+def get_image_url(datas: dict):
+    return datas.pop('image_original_url')
+
+def get_token_id(datas: dict):
+    return datas.pop('token_id')
+
+def get_expected_price(datas: dict):
+    return datas.pop('price')
+
+def change_idx(num): 
+    st.session_state.select_text=num
+
+def change_counter(num): 
+    st.session_state.token_num=num
 
 st.set_page_config(
     # layout="wide",
@@ -65,14 +89,12 @@ if st.session_state.NFT_name == 'Otherdeed for Otherside':
     if 'token_num' not in st.session_state:
         st.session_state.token_num = -1
     st.title("Otherdeed for Otherside")
-    ordinal_number = ['첫', '두', '세', '네', '다섯', '여섯', '일곱', '여덟', '아홉', '열']
+    # ordinal_number = ['첫', '두', '세', '네', '다섯', '여섯', '일곱', '여덟', '아홉x', '열']
     st.subheader('찾고 싶은 아이템을 입력해 주세요!!!')
 
     select_c=st.columns((4,1))
     with select_c[0]:
-        st.session_state.select_text = st.text_input(label = 'Feature name',placeholder = 'Token ID를 입력해주세요...')
-        data2 = requests.get(f"http://localhost:30002/tokens/{st.session_state.select_text}").json()
-
+        st.session_state.select_text = st.text_input(label = 'Feature name', placeholder = 'Token ID를 입력해주세요...')
     with select_c[1]:
         st.write('')
         st.write('')
@@ -80,9 +102,9 @@ if st.session_state.NFT_name == 'Otherdeed for Otherside':
         st.session_state.select_button = st.button('Search')
     if st.session_state.select_button :
         if 0 <= int(st.session_state.select_text) < 100000:
+            
             st.session_state.token_num = 10
-            all_data = delete_none(data2)
-            image_link = all_data.pop('image_original_url')
+            
         else:
             st.warning('해당 Token_id가 없습니다. 다시 입력해주세요.')
 
@@ -90,15 +112,43 @@ if st.session_state.NFT_name == 'Otherdeed for Otherside':
         st.header(f"#{st.session_state.select_text}에 대한 정보입니다.")
         st.subheader(f'추천 가격 : 0.0001 ETH')
         main_c = st.columns(2)
+        token_info = requests.get(f"http://localhost:30002/token/{st.session_state.select_text}").json()
+        related_tokens = get_related_tokens(token_info)
+        delete_none(token_info)
+        image_link = get_image_url(token_info)
+        st.write(st.session_state.select_text)
+        st.write(st.session_state.token_num)
         with main_c[0]:
             st.image(image_link)
+            
         with main_c[1]:
-            st.write(all_data)
+            st.write(token_info)
         back_col=st.columns(8)
+        
         with back_col[7]:
             st.session_state.back_button=st.button('Back',on_click=change_counter,args=(-1,))
 
+        # 유사한 아이템 보여주기
+        query = "http://localhost:30002/tokens/?"
+        for token in related_tokens:
+            query += f'token_ids={token}&'
+        temp = requests.get(query).json()
 
+        col0, col1, col2, col3, col4 = st.columns(5)
+        with col0:
+        # st.write(temp)
+        # related_tokens
+            st.session_state.sim_button0=st.button(label=f'#{related_tokens[0]}', on_click=change_idx, args=(related_tokens[0],))
+            st.image(temp[0]['image_original_url'])
+            st.write(st.session_state.select_text)
+            # st.session_state.sim_button0 = st.button(label=f'#{related_tokens[0]}')
+        # if st.session_state.sim_button0:
+        #     st.session_state.select_text = int(related_tokens[0])
+        #     token_info = requests.get(f"http://localhost:30002/token/{st.session_state.select_text}").json()
+        # print(st.session_state.select_text)
+        # st.image(temp[0]['image_original_url'])
+        # st.caption("가격 : 0 ETH")
+        
 # 
 # st.write(all_data)
 # 

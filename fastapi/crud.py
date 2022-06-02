@@ -1,12 +1,15 @@
-from sqlalchemy.orm import Session
-
+from sqlalchemy.orm import Session, join
+from sqlalchemy import or_
+from typing import List, Optional
 import models #, schemas
 
-def get_user(db: Session, user_id: int):
-    return db.query(models.temp).filter(models.temp.id == user_id).first()
-
 def get_token(db: Session, token_id: int):
-    return db.query(models.Item).filter(models.Item.token_id == token_id).first()
+    return db.query(models.OtherdeedItem).filter(models.OtherdeedItem.token_id == token_id).first()
 
+def get_similarity(db: Session, token_id: list):
+    return db.query(models.OtherdeedSim).filter(models.OtherdeedSim.token_id == token_id).first()
+
+def get_tokens(db: Session, token_ids: List):
+    return db.query(models.OtherdeedItem).filter(or_(models.OtherdeedItem.token_id == token_id for token_id in token_ids)).all()
 
 
