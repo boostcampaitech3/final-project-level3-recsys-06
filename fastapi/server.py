@@ -32,6 +32,18 @@ app = FastAPI(
     version="0.1.0",
 )
 
+@app.get("/Today/")
+def read_today(db: Session = Depends(get_db)):
+    db_token = crud.get_today(db)
+    if db_token is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    ret = []
+    temp = ['token_id_1', 'token_id_2', 'token_id_3', 'token_id_4', 'token_id_5', 'token_id_6', 'token_id_7', 'token_id_8', 'token_id_9', 'token_id_10']
+    for token in db_token.__dict__:
+        if token in temp:
+            ret.append(db_token.__dict__[token])
+    return sorted(ret)
+    # return db_token
 
 @app.get("/token/{token_id}")
 def read_token(token_id: int, db: Session = Depends(get_db)):

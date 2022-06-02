@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session, join
-from sqlalchemy import or_
+from sqlalchemy import or_, select
 from typing import List, Optional
 import models #, schemas
 
@@ -12,4 +12,5 @@ def get_similarity(db: Session, token_id: list):
 def get_tokens(db: Session, token_ids: List):
     return db.query(models.OtherdeedItem).filter(or_(models.OtherdeedItem.token_id == token_id for token_id in token_ids)).all()
 
-
+def get_today(db: Session):
+    return db.query(models.Today).first()

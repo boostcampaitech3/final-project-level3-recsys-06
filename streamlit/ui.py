@@ -1,5 +1,6 @@
 from cProfile import label
 from logging import PlaceHolder
+from typing import List
 import streamlit as st
 import requests
 import re
@@ -51,11 +52,30 @@ def get_token_id(datas: dict):
 def get_expected_price(datas: dict):
     return datas.pop('price')
 
+def get_predicted_value(datas: dict):
+    return datas.pop('predict_value')
+
+def increment_counter(num):
+    st.session_state.token_num += 1
+    st.session_state.idx=num
+    
+def decreasement_counter(num):
+    st.session_state.token_num -= 1
+    st.session_state.idx=num
+# def get_today_item(datas: dict):
+#     temp = ['token_id', 'image_original_url', 'predict_value']
+
+#     return datas[temp]
+
 def change_idx(num): 
-    st.session_state.select_text=num
+    st.session_state.idx=num
 
 def change_counter(num): 
     st.session_state.token_num=num
+
+def change_both(index, num):
+    st.session_state.idx=num
+    st.session_state.token_num=index
 
 st.set_page_config(
     # layout="wide",
@@ -63,8 +83,10 @@ st.set_page_config(
     page_title='King of 부동산',
     page_icon='https://img.seadn.io/files/ba4845e224bcdea2f7a83318a1933534.png?auto=format'
     )
+ 
 if 'NFT_name' not in st.session_state:
     st.session_state.NFT_name='Main'
+    st.session_state.idx = -1
 # sidebar
 st.session_state.NFT_name = st.sidebar.selectbox('Please select in selectbox!',
         ('Main','Otherdeed for Otherside', 'Azuki', 'Bored Ape Yacht Club','Test'))
@@ -89,35 +111,41 @@ if st.session_state.NFT_name == 'Otherdeed for Otherside':
     if 'token_num' not in st.session_state:
         st.session_state.token_num = -1
     st.title("Otherdeed for Otherside")
-    # ordinal_number = ['첫', '두', '세', '네', '다섯', '여섯', '일곱', '여덟', '아홉x', '열']
+    ordinal_number = ['첫', '두', '세', '네', '다섯', '여섯', '일곱', '여덟', '아홉x', '열']
     st.subheader('찾고 싶은 아이템을 입력해 주세요!!!')
 
     select_c=st.columns((4,1))
     with select_c[0]:
-        st.session_state.select_text = st.text_input(label = 'Feature name', placeholder = 'Token ID를 입력해주세요...')
+        st.session_state.select_text = st.text_input(label = 'Feature name', placeholder = 'Token ID를 입력해주세요... 숫자로~')
     with select_c[1]:
         st.write('')
         st.write('')
         st.write('')
-        st.session_state.select_button = st.button('Search')
-    if st.session_state.select_button :
-        if 0 <= int(st.session_state.select_text) < 100000:
-            
-            st.session_state.token_num = 10
-            
-        else:
-            st.warning('해당 Token_id가 없습니다. 다시 입력해주세요.')
+        st.session_state.select_button = st.button('Search', on_click=change_idx, args=(st.session_state.select_text,))
+    if st.session_state.select_button : # search 버튼을 누르면
+        try:
+            val  = int(st.session_state.select_text)
+            if 0 <= val < 100000: # 범위를 벗어난다면 
+                st.session_state.token_num = 10
+            else:
+                st.session_state.token_num=-1
+                st.warning('해당 Token_id가 없습니다. 다시 입력해주세요.')
+        except:
+            st.session_state.token_num=-1
+            st.warning('숫자를 입력해주세요')
 
     if st.session_state.token_num==10:
-        st.header(f"#{st.session_state.select_text}에 대한 정보입니다.")
-        st.subheader(f'추천 가격 : 0.0001 ETH')
-        main_c = st.columns(2)
-        token_info = requests.get(f"http://localhost:30002/token/{st.session_state.select_text}").json()
+        if 'idx' not in st.session_state:
+            st.session_state.idx = st.session_state.select_text 
+
+        token_info = requests.get(f"http://localhost:30002/token/{st.session_state.idx}").json()
         related_tokens = get_related_tokens(token_info)
         delete_none(token_info)
         image_link = get_image_url(token_info)
-        st.write(st.session_state.select_text)
-        st.write(st.session_state.token_num)
+        predict_value = get_predicted_value(token_info)
+        st.header(f"#{st.session_state.idx}에 대한 정보입니다.")
+        st.subheader(f'추천 가격 : {predict_value} ETH')
+        main_c = st.columns(2)
         with main_c[0]:
             st.image(image_link)
             
@@ -134,45 +162,62 @@ if st.session_state.NFT_name == 'Otherdeed for Otherside':
             query += f'token_ids={token}&'
         temp = requests.get(query).json()
 
-        col0, col1, col2, col3, col4 = st.columns(5)
-        with col0:
-        # st.write(temp)
-        # related_tokens
-            st.session_state.sim_button0=st.button(label=f'#{related_tokens[0]}', on_click=change_idx, args=(related_tokens[0],))
-            st.image(temp[0]['image_original_url'])
-            st.write(st.session_state.select_text)
-            # st.session_state.sim_button0 = st.button(label=f'#{related_tokens[0]}')
-        # if st.session_state.sim_button0:
-        #     st.session_state.select_text = int(related_tokens[0])
-        #     token_info = requests.get(f"http://localhost:30002/token/{st.session_state.select_text}").json()
-        # print(st.session_state.select_text)
-        # st.image(temp[0]['image_original_url'])
-        # st.caption("가격 : 0 ETH")
+        # col0, col1, col2, col3, col4 = st.columns(5)
+        col_first = list(st.columns(5))
+        for first, col in enumerate(col_first):
+            with col:
+                st.session_state.first=st.button(label=f'#{related_tokens[first]}', on_click=change_idx, args=(related_tokens[first],))
+                st.image(temp[first]['image_original_url'])
         
-# 
-# st.write(all_data)
-# 
-# st.image(image=image_link, caption="test")
+        col_second = list(st.columns(5))
+        for second, col in enumerate(col_second):
+            with col:
+                st.session_state.second=st.button(label=f'#{related_tokens[second+5]}', on_click=change_idx, args=(related_tokens[second+5],))
+                st.image(temp[second+5]['image_original_url'])
 
+    elif (st.session_state.token_num >= 0) and (st.session_state.token_num <= 9):
+        today_recommends = requests.get(f"http://localhost:30002/Today").json()
+        token_info = requests.get(f"http://localhost:30002/token/{st.session_state.idx}").json()
+        related_tokens = get_related_tokens(token_info)
+        delete_none(token_info)
+        image_link = get_image_url(token_info)
+        predict_value = get_predicted_value(token_info)
+        st.header(
+            f'오늘의 {ordinal_number[st.session_state.token_num]} 번째 추천 #{today_recommends[st.session_state.token_num]} : {predict_value} ETH')
+        main_c = st.columns(2)
+        with main_c[0]:
+            st.image(image_link)
+        with main_c[1]:
+            st.write(token_info)
 
-
-# st.markdown("HEEELO")
-# st.write(data)
-# st.markdown("[![Foo](http://www.google.com.au/images/nav_logo7.png)](http://google.com.au/)")
-# st.markdown("[![Foo](http://www.google.com.au/images/nav_logo7.png)](http://google.com.au/)")
-# st.markdown("[![Foo](http://www.google.com.au/images/nav_logo7.png)](http://google.com.au/)")
-# image_urls = ["http://www.google.com.au/images/nav_logo7.png", "http://www.google.com.au/images/nav_logo7.png", "http://www.google.com.au/images/nav_logo7.png"]
-# opening_html = '<div style=display:flex;flex-wrap:wrap>'
-# closing_html = '</div>'
-# child_html = ['<img src="{}" style=margin:3px;width:200px;></img>'.format(url) for url in image_urls]
-# gallery_html = opening_html
-# for child in child_html:
-#     gallery_html += child
-# gallery_html += closing_html
-# st.markdown(gallery_html, unsafe_allow_html=True)
-
-
-
-
-# st.write({token_columns[a]:str(list(st.session_state.data_dataframe.loc[st.session_state.token_num])[a+8]) for a in range(len(token_columns)) if str(st.session_state.data_dataframe.loc[st.session_state.token_num][a+8])!='nan'})
-# # data2=pd.DataFrame(data2,columns=~~~)
+        sub_c = st.columns((4, 3, 3))
+        with sub_c[0]:
+            left_button = st.button(
+                label="이전", disabled=(st.session_state.token_num <= 0),
+                on_click=decreasement_counter, args=(today_recommends[st.session_state.token_num],)
+            )
+        with sub_c[1]:
+            if st.session_state.token_num != 9:
+                right_button = st.button(
+                    label="다음", disabled=(st.session_state.token_num >= len(ordinal_number)),
+                    on_click=increment_counter, args=(today_recommends[st.session_state.token_num+1],)
+                )
+        
+    if st.session_state.token_num != 10:
+        today_recommends = requests.get(f"http://localhost:30002/Today").json() # 오늘의 추천 10개를 리스트로 받아옴
+        query = "http://localhost:30002/tokens/?" # Ex) http://localhost:30002/tokens/?token_ids=22&token_ids33... 
+        for token in today_recommends:
+            query += f'token_ids={token}&'
+        recommended = requests.get(query).json() # 추천 받은 10개의 모든 정보를 받아온다.
+        
+        col_third = list(st.columns(5))
+        for third, col in enumerate(col_third):
+            with col:
+                st.session_state.third=st.button(label=f"#{recommended[third]['token_id']}", on_click=change_both, args=(third, recommended[third]['token_id'],))
+                st.image(recommended[third]['image_original_url'])
+            
+        col_forth = list(st.columns(5))
+        for forth, col in enumerate(col_forth):
+            with col:
+                st.session_state.forth=st.button(label=f"#{recommended[forth+5]['token_id']}", on_click=change_both, args=(forth+5, recommended[forth+5]['token_id'],))
+                st.image(recommended[forth+5]['image_original_url'])
