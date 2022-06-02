@@ -1,6 +1,6 @@
-from sqlalchemy.orm import Session, join
-from sqlalchemy import or_, select
-from typing import List, Optional
+from sqlalchemy.orm import Session
+from sqlalchemy import or_
+from typing import List
 import models #, schemas
 
 def get_token(db: Session, token_id: int):

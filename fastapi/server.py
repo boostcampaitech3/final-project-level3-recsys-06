@@ -1,8 +1,4 @@
 import io
-
-from segmentation import get_segmentator, get_segments
-from starlette.responses import Response
-
 from fastapi import FastAPI, File, Query
 # from data import db_connect
 
@@ -11,7 +7,7 @@ from typing import List
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 
-import crud, models, schemas
+import crud, models
 from database import SessionLocal, engine
 
 models.Base.metadata.create_all(bind=engine)
