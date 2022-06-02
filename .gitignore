@@ -1,3 +1,9 @@
 *.yaml
 *.exe
 *.out
+*.exe
+*.zip
+*.jar
+chromedriver
+*.csv
+*.deb
