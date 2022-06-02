@@ -1,9 +1,11 @@
 # https://2bmw3.tistory.com/31?category=946986
 
 import requests
+import time
 from selenium.webdriver.common.by import By
 from selenium import webdriver
 from selenium_stealth import stealth
+from selenium.webdriver import ActionChains
 
 # 이더스캔 토큰정보 크롤링 함수
 
@@ -37,29 +39,33 @@ stealth(driver,
 
 driver.get('https://opensea.io/collection/otherdeed/activity')
 #driver.get('https://naver.com')
-driver.implicitly_wait(100)
+time.sleep(20)
 
-for idx in range(1, 17):
+scroll_element = driver.find_element_by_xpath('/html/body/div[1]/div/main/div/div/div[5]/div/div[4]/div[3]/div[3]/div[3]/div/div[2]/div[9]')
+action = ActionChains(driver)
+action.move_to_element(scroll_element).perform()
+
+for idx in range(1, 18):
     age= driver.find_element_by_xpath(f"/html/body/div[1]/div/main/div/div/div[5]/div/div[4]/div[3]/div[3]/div[3]/div/div[2]/div[{idx}]/button/div/div[7]/div/a").text
     age = age.strip().split(" ")
     age = " ".join(age[:-1])
                                         
-    if "minute" in age or "second" in age:
-        link = driver.find_element_by_xpath(f"/html/body/div[1]/div/main/div/div/div[5]/div/div[4]/div[3]/div[3]/div[3]/div/div[2]/div[{idx}]/button/div/div[2]/div/div/div/div[2]/span[2]/a")
-        link = link.get_attribute("href").strip().split("/")
-        token_id = link[-1]                                                  
+    #if "minute" in age or "second" in age:
+    link = driver.find_element_by_xpath(f"/html/body/div[1]/div/main/div/div/div[5]/div/div[4]/div[3]/div[3]/div[3]/div/div[2]/div[{idx}]/button/div/div[2]/div/div/div/div[2]/span[2]/a")
+    link = link.get_attribute("href").strip().split("/")
+    token_id = link[-1]                                                  
 
-        price = driver.find_element_by_xpath(f"/html/body/div[1]/div/main/div/div/div[5]/div/div[4]/div[3]/div[3]/div[3]/div/div[2]/div[{idx}]/button/div/div[3]/div/div[1]/div/div[2]")
-        price = price.text
+    price = driver.find_element_by_xpath(f"/html/body/div[1]/div/main/div/div/div[5]/div/div[4]/div[3]/div[3]/div[3]/div/div[2]/div[{idx}]/button/div/div[3]/div/div[1]/div/div[2]")
+    price = price.text
 
-        price_type_link = driver.find_element_by_xpath(f"/html/body/div[1]/div/main/div/div/div[5]/div/div[4]/div[3]/div[3]/div[3]/div/div[2]/div[{idx}]/button/div/div[3]/div/div[1]/div/div[1]/a")
-        price_type_link = price_type_link.get_attribute("href")
-        if "etherscan" in price_type_link : price_type = "ETH"
-        elif "WETH" in price_type_link : price_type = "WETH"
+    price_type_link = driver.find_element_by_xpath(f"/html/body/div[1]/div/main/div/div/div[5]/div/div[4]/div[3]/div[3]/div[3]/div/div[2]/div[{idx}]/button/div/div[3]/div/div[1]/div/div[1]/a")
+    price_type_link = price_type_link.get_attribute("href")
+    if "etherscan" in price_type_link : price_type = "ETH"
+    elif "WETH" in price_type_link : price_type = "WETH"
 
-        dollor = driver.find_element_by_xpath(f"/html/body/div[1]/div/main/div/div/div[5]/div/div[4]/div[3]/div[3]/div[3]/div/div[2]/div[{idx}]/button/div/div[3]/div/div[2]/span/div/div").text
+    dollor = driver.find_element_by_xpath(f"/html/body/div[1]/div/main/div/div/div[5]/div/div[4]/div[3]/div[3]/div[3]/div/div[2]/div[{idx}]/button/div/div[3]/div/div[2]/span/div/div").text
 
-        
-        print(token_id, price, price_type, dollor, age)
+    print("=================================")
+    print(token_id, price, price_type, dollor, age)
 
 driver.close()
