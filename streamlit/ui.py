@@ -176,10 +176,11 @@ if st.session_state.NFT_name == 'Otherdeed for Otherside':
 
         sub_c = st.columns((4, 3, 3))
         with sub_c[0]:
-            left_button = st.button(
-                label="이전", disabled=(st.session_state.token_num <= 0),
-                on_click=decreasement_counter, args=(today_recommends[st.session_state.token_num],)
-            )
+            if st.session_state.token_num !=0:
+                left_button = st.button(
+                    label="이전", disabled=(st.session_state.token_num <= -1),
+                    on_click=decreasement_counter, args=(today_recommends[st.session_state.token_num-1],)
+                )
         with sub_c[1]:
             if st.session_state.token_num != 9:
                 right_button = st.button(
