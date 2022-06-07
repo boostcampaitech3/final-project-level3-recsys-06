@@ -172,9 +172,6 @@ if st.session_state.NFT_name == 'Otherdeed for Otherside':
     elif (st.session_state.token_num >= 0) and (st.session_state.token_num <= 9):
         today_recommends = requests.get(f"http://localhost:30002/Top10").json() # Top 10 개를 불러온다.
 
-        st.write(today_recommends)
-        st.write(st.session_state.idx)
-        st.write(today_recommends)
         token_info = requests.get(f"http://localhost:30002/token/{st.session_state.idx}").json() # Top 10 개의 정보를 가지고 온다.
         related_tokens = get_related_tokens(token_info)
         delete_none(token_info)
