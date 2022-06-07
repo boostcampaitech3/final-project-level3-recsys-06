@@ -1,8 +1,7 @@
 from typing import List
 import streamlit as st
 import requests
-import streamlit as st
-import requests
+
 
 # from model import nft_dataset, linear_model, save_model, Train, get_prediction
 # backend = "http://fastapi:8000/"
@@ -171,8 +170,12 @@ if st.session_state.NFT_name == 'Otherdeed for Otherside':
                 st.image(temp[second+5]['image_original_url'])
 
     elif (st.session_state.token_num >= 0) and (st.session_state.token_num <= 9):
-        today_recommends = requests.get(f"http://localhost:30002/Today").json()
-        token_info = requests.get(f"http://localhost:30002/token/{st.session_state.idx}").json()
+        today_recommends = requests.get(f"http://localhost:30002/Top10").json() # Top 10 개를 불러온다.
+
+        st.write(today_recommends)
+        st.write(st.session_state.idx)
+        st.write(today_recommends)
+        token_info = requests.get(f"http://localhost:30002/token/{st.session_state.idx}").json() # Top 10 개의 정보를 가지고 온다.
         related_tokens = get_related_tokens(token_info)
         delete_none(token_info)
         image_link = get_image_url(token_info)
@@ -203,7 +206,7 @@ if st.session_state.NFT_name == 'Otherdeed for Otherside':
         st.write('')
         st.write('')
         st.subheader('[ 이 시각 추천 NFT ]')
-        today_recommends = requests.get(f"http://localhost:30002/Today").json() # 오늘의 추천 10개를 리스트로 받아옴
+        today_recommends = requests.get(f"http://localhost:30002/Top10").json() # 오늘의 추천 10개를 리스트로 받아옴
         query = "http://localhost:30002/tokens/?" # Ex) http://localhost:30002/tokens/?token_ids=22&token_ids33... 
         for token in today_recommends:
             query += f'token_ids={token}&'
