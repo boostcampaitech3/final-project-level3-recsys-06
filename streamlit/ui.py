@@ -75,7 +75,7 @@ if 'NFT_name' not in st.session_state:
 st.session_state.NFT_name = st.sidebar.selectbox('Please select in selectbox!',
         ('Main','Otherdeed for Otherside', 'Azuki', 'Bored Ape Yacht Club','Test'))
 if st.session_state.NFT_name == 'Main':
-    st.header('저희는 다음과 같은 NFT를 지원합니다!!!')
+    st.header('[ NFT Collections ]')
     st.write('')
     st.write('')
     st.write('')
@@ -94,13 +94,20 @@ if st.session_state.NFT_name == 'Main':
 if st.session_state.NFT_name == 'Otherdeed for Otherside':
     if 'token_num' not in st.session_state:
         st.session_state.token_num = -1
-    st.title("Otherdeed for Otherside")
+    title_col=st.columns((1,4))
+    with title_col[0]:
+        st.image('https://lh3.googleusercontent.com/yIm-M5-BpSDdTEIJRt5D6xphizhIdozXjqSITgK4phWq7MmAU3qE7Nw7POGCiPGyhtJ3ZFP8iJ29TFl-RLcGBWX5qI4-ZcnCPcsY4zI=s168')
+    with title_col[1]:
+        st.write('')
+        st.write('')
+        st.title("Otherdeed for Otherside")
     ordinal_number = ['첫', '두', '세', '네', '다섯', '여섯', '일곱', '여덟', '아홉', '열']
-    st.subheader('찾고 싶은 아이템을 입력해 주세요!!!')
+    st.write('')
+    st.write('')
 
     select_c=st.columns((4,1))
     with select_c[0]:
-        st.session_state.select_text = st.text_input(label = 'Feature name', placeholder = 'Token ID를 입력해주세요... 숫자로~')
+        st.session_state.select_text = st.text_input(label = 'Token ID', placeholder = '숫자를 입력해주세요~')
     with select_c[1]:
         st.write('')
         st.write('')
@@ -134,13 +141,17 @@ if st.session_state.NFT_name == 'Otherdeed for Otherside':
             st.image(image_link)
             
         with main_c[1]:
-            st.write(token_info)
+            for a in token_info.keys():
+                st.write(f' - {a} : {token_info[a]}')
         back_col=st.columns(8)
         
         with back_col[7]:
             st.session_state.back_button=st.button('Back',on_click=change_counter,args=(-1,))
 
         # 유사한 아이템 보여주기
+        st.write('')
+        st.write('')
+        st.subheader('[ 비슷한 NFT들 ]')
         query = "http://localhost:30002/tokens/?"
         for token in related_tokens:
             query += f'token_ids={token}&'
@@ -166,14 +177,14 @@ if st.session_state.NFT_name == 'Otherdeed for Otherside':
         delete_none(token_info)
         image_link = get_image_url(token_info)
         predict_value = get_predicted_value(token_info)
-        st.header(
-            f'오늘의 {ordinal_number[st.session_state.token_num]} 번째 추천 #{today_recommends[st.session_state.token_num]} : {predict_value} ETH')
+        st.header(f'오늘의 {ordinal_number[st.session_state.token_num]} 번째 추천 #{today_recommends[st.session_state.token_num]}')
+        st.subheader(f'추천 가격 : {predict_value} ETH')
         main_c = st.columns(2)
         with main_c[0]:
             st.image(image_link)
         with main_c[1]:
-            st.write(token_info)
-
+            for a in token_info.keys():
+                st.write(f' - {a} : {token_info[a]}')
         sub_c = st.columns((4, 3, 3))
         with sub_c[0]:
             if st.session_state.token_num !=0:
@@ -189,6 +200,9 @@ if st.session_state.NFT_name == 'Otherdeed for Otherside':
                 )
         
     if st.session_state.token_num != 10:
+        st.write('')
+        st.write('')
+        st.subheader('[ 이 시각 추천 NFT ]')
         today_recommends = requests.get(f"http://localhost:30002/Today").json() # 오늘의 추천 10개를 리스트로 받아옴
         query = "http://localhost:30002/tokens/?" # Ex) http://localhost:30002/tokens/?token_ids=22&token_ids33... 
         for token in today_recommends:
