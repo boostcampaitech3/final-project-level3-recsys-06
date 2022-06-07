@@ -77,11 +77,11 @@ price_27_time = price_27[price_27['trade_time']>1.6518*1e9]
 # item 특성과 가격 합치기
 item_price=price_27_time[[5,'eth_price']]
 
-del item[21]
-del item[29]
-del item[31]
+del item[21] # koda_id
+del item[29] # koda
+del item[31] # plot
 
-item_property = pd.concat([item[1],item.loc[:,8:35]],axis=1)
+item_property = pd.concat([item[1],item.loc[:,8:35]],axis=1) # 특성 전체
 item_property = item_property.rename(columns={1:'id'})
 item_price = item_price.rename(columns={5:'id'})
 all_item_property_dummy = pd.get_dummies(item_property.iloc[:,1:])
