@@ -14,7 +14,7 @@
 | Front-end,<br>Product serving | **Project Manager**, <br> Data crawling, <br> Database, <br> Product serving(Airflow) | EDA,<br>Data preprocessing,<br>Model | Back-end,<br>Product serving |
 
 
-## 🔨 Tools
+## 🔨 Environment
 ```
 Python 3.8.5
 numpy 1.19.2
