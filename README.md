@@ -19,6 +19,7 @@
 
 ## 🔨 Environment
 ```
+fastapi 0.78.0
 python 3.8.5
 numpy 1.19.2
 pandas 1.4.2
@@ -29,7 +30,6 @@ torch 1.10.0
 streamlit 1.9.2
 selenium 4.2.0
 selenium-stealth 1.0.6
-fastapi 0.78.0
 ```
 
 ## 📁 Directory
