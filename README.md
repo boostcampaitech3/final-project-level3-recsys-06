@@ -20,7 +20,20 @@
 
 ## 🏢 Models
 
+![image](https://user-images.githubusercontent.com/93507736/172513156-2091879d-56db-40be-9b05-9b73bde50847.png)
 
+
+### 특성과 가격의 관계
+![image](https://user-images.githubusercontent.com/93507736/172512982-2c924755-24a0-43fd-998b-ec0340357e1f.png)
+
+
+### 이상치제거
+![image](https://user-images.githubusercontent.com/93507736/172513031-0382de69-5713-4a4e-bfc3-04217287d12b.png)
+![image](https://user-images.githubusercontent.com/93507736/172513060-183d824d-95ea-425b-8b18-1972f6677640.png)
+
+## model
+Linear regression  
+loss fuction = MAPE(MeanAbsolutePercentageError)
 
 ## 📒 보고서
 
