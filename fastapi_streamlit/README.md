@@ -1,5 +1,5 @@
 # 🏃‍♂ FastAPI
-> <p align="center"><img src="https://user-images.githubusercontent.com/58590260/172524500-f5729527-aba6-4e28-b065-11bc302d93c4.png" width=500><br>
+> <p align="center"><img src="https://user-images.githubusercontent.com/58590260/172596307-deb49b8a-9a6d-4631-84af-8a1b1cfdbb73.png" width=500><br>
 > Databse와 Streamlit을 연결합니다</p>
 ### 🔨 Built With
 * [FastAPI](https://fastapi.tiangolo.com/)
