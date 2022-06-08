@@ -1,7 +1,14 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Float
+from sqlalchemy import Column, Integer, String, Float, DateTime
 from sqlalchemy.orm import relationship
 
 from database import Base
+
+
+class Top10(Base):
+    __tablename__ = "TOP_10_ITEMS"
+    # image_preview_url, image_thumbnail_url, image_original_url, external_link, artifact, is_artifact, category, eastern_resource, environment, koda_clothing, is_koda_clothing, koda_core, koda_eyes, koda_head, is_koda_mega, koda_weapon, is_koda_weapon, koda_id, is_koda, northern_resource, sediment, southern_resource, western_resource, easteren_resource, environment_tier, koda, northern_resource_tier, plot, sediment_tier, southern_resource_tier, western_resource_tier, eastern_resource_tier
+    token_id = Column(Integer, primary_key=True)
+    train_time = Column(DateTime)
 
 class Today(Base):
     __tablename__ = "temp_today"

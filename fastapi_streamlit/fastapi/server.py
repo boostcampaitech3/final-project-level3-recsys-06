@@ -1,5 +1,5 @@
 import io
-from fastapi import FastAPI, File, Query
+from fastapi import FastAPI, Query
 # from data import db_connect
 
 from typing import List
@@ -27,6 +27,16 @@ app = FastAPI(
                            Visit this URL at port 8501 for the streamlit interface.""",
     version="0.1.0",
 )
+
+@app.get("/Top10/")
+def read_today(db: Session = Depends(get_db)):
+    db_token = crud.get_top10(db)
+    if db_token is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    ret = []
+    for token in db_token:
+        ret.append(token[0])
+    return sorted(ret)
 
 @app.get("/Today/")
 def read_today(db: Session = Depends(get_db)):
