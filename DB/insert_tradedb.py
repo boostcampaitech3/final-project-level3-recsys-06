@@ -1,6 +1,4 @@
-# https://intrepidgeeks.com/tutorial/use-aws-python-athena-python-to-query-athena-boto-3vs-pyathenavs-awswrangler
-# https://velog.io/@hsh/AWSPythonAthena-%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9C%BC%EB%A1%9C-%EC%95%84%ED%85%8C%EB%82%98%EC%97%90-%EC%BF%BC%EB%A6%AC%ED%95%98%EA%B8%B0-boto3-vs-pyathena-vs-awswrangler
-#https://speedanddirection.tistory.com/105
+# https://pythondocs.net/selenium/%EC%85%80%EB%A0%88%EB%8B%88%EC%9B%80-%EC%9B%B9-%ED%81%AC%EB%A1%A4%EB%A7%81-%EB%B4%87-%ED%83%90%EC%A7%80-%EC%9A%B0%ED%9A%8C/
 
 
 from pyathena import connect
