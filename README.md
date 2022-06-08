@@ -37,7 +37,7 @@ fastapi 0.78.0
 - [model](https://github.com/boostcampaitech3/final-project-level3-recsys-06/tree/main/model)
 
 ## 📎 Dataset
-<p align="center"><img src="https://user-images.githubusercontent.com/58590260/172515236-ec10bba1-3d09-43c0-b1ee-176778970982.png" height=150> <img src="https://user-images.githubusercontent.com/58590260/172515244-88881601-a6bb-4b2d-a617-0d668dbaa561.png" height=150><img src="https://user-images.githubusercontent.com/58590260/172522395-7e8d984f-5c46-40da-a069-9ca7bd8ddb3e.png" height=150><img src="https://user-images.githubusercontent.com/58590260/172522513-a31958df-77c4-40f4-87ce-5792643bd068.png" height=150>
+<p align="center"><img src="https://user-images.githubusercontent.com/58590260/172515236-ec10bba1-3d09-43c0-b1ee-176778970982.png" height=150> <img src="https://user-images.githubusercontent.com/58590260/172515244-88881601-a6bb-4b2d-a617-0d668dbaa561.png" height=150> <img src="https://user-images.githubusercontent.com/58590260/172522395-7e8d984f-5c46-40da-a069-9ca7bd8ddb3e.png" height=150> <img src="https://user-images.githubusercontent.com/58590260/172522513-a31958df-77c4-40f4-87ce-5792643bd068.png" height=150>
 
 </p>
 
