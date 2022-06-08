@@ -46,7 +46,7 @@ fastapi 0.78.0
 
 ## 🖼️ Result
 - http://115.85.182.72:30001/
-<p align="center"> <img src="https://user-images.githubusercontent.com/58590260/172598430-afe65f8e-2d2f-4c74-ae5e-9ada22a4fb08.png" height=300> <img src="https://user-images.githubusercontent.com/58590260/172597608-7d726934-4c24-493d-9e3c-f3d96078c31a.png" height=300> <img src="https://user-images.githubusercontent.com/58590260/172597676-e7eeb004-4cdf-45ff-bf08-5f417a81a8e8.png" height=300> </p>
+<p align="center"> <img src="https://user-images.githubusercontent.com/58590260/172598430-afe65f8e-2d2f-4c74-ae5e-9ada22a4fb08.png" height=200> <img src="https://user-images.githubusercontent.com/58590260/172597608-7d726934-4c24-493d-9e3c-f3d96078c31a.png" height=200> <img src="https://user-images.githubusercontent.com/58590260/172597676-e7eeb004-4cdf-45ff-bf08-5f417a81a8e8.png" height=200> </p>
 
 
 ## 📒 보고서
