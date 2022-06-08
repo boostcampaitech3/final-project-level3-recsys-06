@@ -12,9 +12,21 @@
 
 
 ## 🔨 Tools
+- Python 3.8.5
+- numpy 1.19.2
+- pandas 1.4.2
+- PyMySQL 1.0.2
+- torch 1.10.0
+- streamlit 1.9.2
+- selenium 4.2.0
+- selenium-stealth 1.0.6
+- fastapi 0.78.0
 
-
-## 🏢 Structure
+## 🏢  directory
+- [DB](https://github.com/boostcampaitech3/final-project-level3-recsys-06/tree/main/DB)
+- [airflow](https://github.com/boostcampaitech3/final-project-level3-recsys-06/tree/main/airflow)
+- [fastapi_streamlit](https://github.com/boostcampaitech3/final-project-level3-recsys-06/tree/main/fastapi_streamlit)
+- [model](https://github.com/boostcampaitech3/final-project-level3-recsys-06/tree/main/model)
 
 ## 📎 Dataset
 <img src="https://user-images.githubusercontent.com/58590260/172515236-ec10bba1-3d09-43c0-b1ee-176778970982.png" width=250> <img src="https://user-images.githubusercontent.com/58590260/172515244-88881601-a6bb-4b2d-a617-0d668dbaa561.png" width=250>
@@ -24,8 +36,13 @@
 - loss fuction = MAPE(MeanAbsolutePercentageError)
 
 ## 📒 보고서
-
-
+* [보고서 링크](https://thundering-astronomy-d23.notion.site/RecSys-06-Final-Project-NFT-d625dd6c789b42dea169c80c350f3454)
 
 ## 📜 참고자료
-
+* [FastAPI](https://fastapi.tiangolo.com/)
+* [Streamlit](https://streamlit.io/)
+* [MySql](https://www.mysql.com/)
+* [SqlAlchemy](https://www.sqlalchemy.org/)
+* [GCP](https://cloud.google.com/)
+* [OpenSeaDocs](https://docs.opensea.io/reference/api-overview)
+* [Etherscan](https://etherscan.io/)
