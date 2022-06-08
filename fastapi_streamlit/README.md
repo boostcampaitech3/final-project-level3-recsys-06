@@ -1,6 +1,7 @@
 # 🏃‍♂ FastAPI
-> <p align="center"><img src="https://user-images.githubusercontent.com/58590260/172596307-deb49b8a-9a6d-4631-84af-8a1b1cfdbb73.png" width=500><br>
-> Databse와 Streamlit을 연결합니다</p>
+> <p align="center"><img src="https://user-images.githubusercontent.com/58590260/172596307-deb49b8a-9a6d-4631-84af-8a1b1cfdbb73.png" width=700><br>
+> Docker로 FastAPI와 Streamlit 이미지를 만들고<br>
+> Google Compute Engine 서버를 사용하여 배포하였습니다.
 ### 🔨 Built With
 * [FastAPI](https://fastapi.tiangolo.com/)
 * [Streamlit](https://streamlit.io/)
