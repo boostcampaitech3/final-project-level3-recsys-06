@@ -2,10 +2,6 @@ from typing import List
 import streamlit as st
 import requests
 
-
-# from model import nft_dataset, linear_model, save_model, Train, get_prediction
-# backend = "http://fastapi:8000/"
-
 def delete_none(datas: dict):
     will_be_removed = []
     for data in datas:
@@ -45,11 +41,7 @@ def increment_counter(num):
 def decreasement_counter(num):
     st.session_state.token_num -= 1
     st.session_state.idx=num
-# def get_today_item(datas: dict):
-#     temp = ['token_id', 'image_original_url', 'predict_value']
-
-#     return datas[temp]
-
+    
 def change_idx(num): 
     st.session_state.idx=num
 
@@ -63,8 +55,8 @@ def change_both(index, num):
 st.set_page_config(
     # layout="wide",
     initial_sidebar_state="expanded",    # 사이드바 상태 : auto / expanded / collapsed
-    page_title='King of 부동산',
-    page_icon='https://img.seadn.io/files/ba4845e224bcdea2f7a83318a1933534.png?auto=format'
+    page_title='NFTeam',
+    page_icon='https://upload.wikimedia.org/wikipedia/commons/2/24/NFT_Icon.png?20191215204608'
     )
  
 if 'NFT_name' not in st.session_state:
