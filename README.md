@@ -66,4 +66,3 @@ selenium-stealth 1.0.6
 * [OpenSea](https://docs.opensea.io/reference/api-overview)
 * [Selenium](https://www.selenium.dev/)
 * [SQLAlchemy](https://www.sqlalchemy.org/)
-* 
