@@ -57,10 +57,13 @@ selenium-stealth 1.0.6
 * [보고서 링크](https://thundering-astronomy-d23.notion.site/RecSys-06-Final-Project-NFT-d625dd6c789b42dea169c80c350f3454)
 
 ## 📜 참고자료
-* [FastAPI](https://fastapi.tiangolo.com/)
-* [Streamlit](https://streamlit.io/)
-* [MySql](https://www.mysql.com/)
-* [SqlAlchemy](https://www.sqlalchemy.org/)
-* [GCP](https://cloud.google.com/)
-* [OpenSeaDocs](https://docs.opensea.io/reference/api-overview)
+* [Airflow](https://airflow.apache.org/)
 * [Etherscan](https://etherscan.io/)
+* [FastAPI](https://fastapi.tiangolo.com/)
+* [GCP](https://cloud.google.com/)
+* [Streamlit](https://streamlit.io/)
+* [MySQL](https://www.mysql.com/)
+* [OpenSea](https://docs.opensea.io/reference/api-overview)
+* [Selenium](https://www.selenium.dev/)
+* [SQLAlchemy](https://www.sqlalchemy.org/)
+* 
