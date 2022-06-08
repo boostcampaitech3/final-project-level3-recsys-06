@@ -3,7 +3,7 @@
 # 💜 NFT 가격 예측 및 저평가된 NFT 추천
 ## ❗ 주제 설명
 > <p align="center"><img src="https://user-images.githubusercontent.com/58590260/172523159-8ae4c1c3-0b85-450b-93a3-9823813ee151.png" width=500><br>
-> 사용자들을 타겟으로 예측가격을 제공하여 저평가 된 NFT를 추천합니다 <br>
+> 사용자에게 예측가격을 제공하여 저평가 된 NFT를 추천합니다 <br>
 > 해당 NFT와 특성이 비슷한 NFT 아이템들을 사용자에게 추가 정보로 제공합니다</p>
 
 
