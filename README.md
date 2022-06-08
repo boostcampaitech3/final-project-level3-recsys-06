@@ -44,10 +44,9 @@ fastapi 0.78.0
 ## ⏲ 서비스 아키텍처
 <p align="center"><img src="https://user-images.githubusercontent.com/58590260/172595659-347ac2ff-1344-4145-9d66-fcf12b6a3948.png" width=700></p>
 
-## Result
-<p align="center>
-<img src="https://user-images.githubusercontent.com/58590260/172597608-7d726934-4c24-493d-9e3c-f3d96078c31a.png" height=300>
-<img src="https://user-images.githubusercontent.com/58590260/172597676-e7eeb004-4cdf-45ff-bf08-5f417a81a8e8.png" height=300></p>
+## 🖼️ Result
+- http://115.85.182.72:30001/
+<p align="center"> <img src="https://user-images.githubusercontent.com/58590260/172598430-afe65f8e-2d2f-4c74-ae5e-9ada22a4fb08.png" height=300> <img src="https://user-images.githubusercontent.com/58590260/172597608-7d726934-4c24-493d-9e3c-f3d96078c31a.png" height=300> <img src="https://user-images.githubusercontent.com/58590260/172597676-e7eeb004-4cdf-45ff-bf08-5f417a81a8e8.png" height=300> </p>
 
 
 ## 📒 보고서
