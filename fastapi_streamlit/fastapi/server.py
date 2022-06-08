@@ -73,9 +73,4 @@ def read_token_with_similarities(token_id:  int, db: Session = Depends(get_db)):
     if db_tokens is None:
         raise HTTPException(status_code=404, detail="User not found")
     return db_tokens.__dict__['token_id'], db_tokens.__dict__['token_id_1']
-    # return db_tokens
-
-# TODO: ITEM 테이블 or csv를 모두 가져오기
-# TODO: 검색기능 -> Token_ID가 주어지면 검색 -> 10개의 관련된 ITEM ID 
-# TODO: 콜렉션 정보 가져오기.
-# TODO: 특성 정보를 반환하는 것.
+    

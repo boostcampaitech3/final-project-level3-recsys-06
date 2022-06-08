@@ -2,10 +2,6 @@ from typing import List
 import streamlit as st
 import requests
 
-
-# from model import nft_dataset, linear_model, save_model, Train, get_prediction
-# backend = "http://fastapi:8000/"
-
 def delete_none(datas: dict):
     will_be_removed = []
     for data in datas:
@@ -45,11 +41,7 @@ def increment_counter(num):
 def decreasement_counter(num):
     st.session_state.token_num -= 1
     st.session_state.idx=num
-# def get_today_item(datas: dict):
-#     temp = ['token_id', 'image_original_url', 'predict_value']
-
-#     return datas[temp]
-
+    
 def change_idx(num): 
     st.session_state.idx=num
 
