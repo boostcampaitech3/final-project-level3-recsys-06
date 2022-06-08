@@ -44,6 +44,11 @@ fastapi 0.78.0
 ## ⏲ 서비스 아키텍처
 <p align="center"><img src="https://user-images.githubusercontent.com/58590260/172595659-347ac2ff-1344-4145-9d66-fcf12b6a3948.png" width=700></p>
 
+## Result
+<p align="center>
+<img src="https://user-images.githubusercontent.com/58590260/172597608-7d726934-4c24-493d-9e3c-f3d96078c31a.png" height=300>
+<img src="https://user-images.githubusercontent.com/58590260/172597676-e7eeb004-4cdf-45ff-bf08-5f417a81a8e8.png" height=300></p>
+
 
 ## 📒 보고서
 * [보고서 링크](https://thundering-astronomy-d23.notion.site/RecSys-06-Final-Project-NFT-d625dd6c789b42dea169c80c350f3454)
