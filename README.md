@@ -16,15 +16,17 @@
 
 ## 🔨 Tools
 ```
-- Python 3.8.5
-- numpy 1.19.2
-- pandas 1.4.2
-- PyMySQL 1.0.2
-- torch 1.10.0
-- streamlit 1.9.2
-- selenium 4.2.0
-- selenium-stealth 1.0.6
-- fastapi 0.78.0
+Python 3.8.5
+numpy 1.19.2
+pandas 1.4.2
+pymysql 1.0.2
+pyyaml 6.0
+requests 2.27.1
+torch 1.10.0
+streamlit 1.9.2
+selenium 4.2.0
+selenium-stealth 1.0.6
+fastapi 0.78.0
 ```
 
 ## 🏢  directory
