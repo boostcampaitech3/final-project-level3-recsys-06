@@ -63,8 +63,8 @@ def change_both(index, num):
 st.set_page_config(
     # layout="wide",
     initial_sidebar_state="expanded",    # 사이드바 상태 : auto / expanded / collapsed
-    page_title='King of 부동산',
-    page_icon='https://img.seadn.io/files/ba4845e224bcdea2f7a83318a1933534.png?auto=format'
+    page_title='NFTeam',
+    page_icon='https://upload.wikimedia.org/wikipedia/commons/2/24/NFT_Icon.png?20191215204608'
     )
  
 if 'NFT_name' not in st.session_state:
