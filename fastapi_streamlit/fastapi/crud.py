@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from sqlalchemy import or_
+from sqlalchemy import or_, desc
 from typing import List
 import models #, schemas
 
@@ -14,3 +14,6 @@ def get_tokens(db: Session, token_ids: List):
 
 def get_today(db: Session):
     return db.query(models.Today).first()
+
+def get_top10(db: Session):
+    return db.query(models.Top10.token_id).order_by(desc(models.Top10.train_time)).limit(10).all()
