@@ -29,7 +29,7 @@ selenium-stealth 1.0.6
 fastapi 0.78.0
 ```
 
-## 🏢  directory
+## 📁 Directory
 - [DB](https://github.com/boostcampaitech3/final-project-level3-recsys-06/tree/main/DB)
 - [airflow](https://github.com/boostcampaitech3/final-project-level3-recsys-06/tree/main/airflow)
 - [fastapi_streamlit](https://github.com/boostcampaitech3/final-project-level3-recsys-06/tree/main/fastapi_streamlit)
