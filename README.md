@@ -40,9 +40,6 @@ fastapi 0.78.0
 
 </p>
 
-## 🏢 Models
-- Linear regression  
-- loss fuction = MAPE(MeanAbsolutePercentageError)
 
 ## 📒 보고서
 * [보고서 링크](https://thundering-astronomy-d23.notion.site/RecSys-06-Final-Project-NFT-d625dd6c789b42dea169c80c350f3454)
