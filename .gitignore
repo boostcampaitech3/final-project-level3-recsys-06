@@ -2,3 +2,13 @@
 .devcontainer/
 *.pyc
 dev_config.yaml
+*.yaml
+*.exe
+*.out
+*.exe
+*.zip
+*.jar
+chromedriver
+*.csv
+*.deb
+etc/
