@@ -16,7 +16,7 @@
 
 ## 🔨 Environment
 ```
-Python 3.8.5
+python 3.8.5
 numpy 1.19.2
 pandas 1.4.2
 pymysql 1.0.2
