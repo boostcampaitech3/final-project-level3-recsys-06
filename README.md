@@ -42,7 +42,7 @@ fastapi 0.78.0
 </p>
 
 ## ⏲ 서비스 아키텍처
-<p align="center"><img src="https://user-images.githubusercontent.com/58590260/172594332-f6edad70-e57d-4c40-903d-a38e12149c78.png" width=700></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/58590260/172595200-3a455035-d922-4b17-9158-7e1250e7ad09.png" width=700></p>
 
 
 ## 📒 보고서
