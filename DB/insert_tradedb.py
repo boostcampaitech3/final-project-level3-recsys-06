@@ -1,5 +1,5 @@
 # https://pythondocs.net/selenium/%EC%85%80%EB%A0%88%EB%8B%88%EC%9B%80-%EC%9B%B9-%ED%81%AC%EB%A1%A4%EB%A7%81-%EB%B4%87-%ED%83%90%EC%A7%80-%EC%9A%B0%ED%9A%8C/
-
+# https://stackoverflow.com/questions/64165726/selenium-stuck-on-checking-your-browser-before-accessing-url
 
 from pyathena import connect
 from selenium import webdriver
