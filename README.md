@@ -3,7 +3,8 @@
 # 💜 NFT 가격 예측 및 저평가된 NFT 추천
 ## ❗ 주제 설명
 > <p align="center"><img src="https://user-images.githubusercontent.com/58590260/172523159-8ae4c1c3-0b85-450b-93a3-9823813ee151.png" width=500><br>
-> 사용자에게 예측가격을 제공하여 저평가 된 NFT를 추천합니다 <br>
+> 1시간마다 NFT 특성 데이터와 거래 데이터로 모델을 훈련하고
+> 사용자에게 예측가격을 제공하고 저평가 된 NFT를 추천합니다 <br>
 > 해당 NFT와 특성이 비슷한 NFT 아이템들을 사용자에게 추가 정보로 제공합니다</p>
 
 
@@ -39,6 +40,9 @@ fastapi 0.78.0
 <p align="center"><img src="https://user-images.githubusercontent.com/58590260/172515236-ec10bba1-3d09-43c0-b1ee-176778970982.png" height=150> <img src="https://user-images.githubusercontent.com/58590260/172515244-88881601-a6bb-4b2d-a617-0d668dbaa561.png" height=150><img src="https://user-images.githubusercontent.com/58590260/172522395-7e8d984f-5c46-40da-a069-9ca7bd8ddb3e.png" height=150><img src="https://user-images.githubusercontent.com/58590260/172522513-a31958df-77c4-40f4-87ce-5792643bd068.png" height=150>
 
 </p>
+
+## ⏲ 서비스 아키텍처
+<p align="center"><img src="https://user-images.githubusercontent.com/58590260/172594332-f6edad70-e57d-4c40-903d-a38e12149c78.png" width=700></p>
 
 
 ## 📒 보고서
