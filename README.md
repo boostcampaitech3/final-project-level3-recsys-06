@@ -2,10 +2,12 @@
 
 # 💜 NFT 가격 예측 및 저평가된 NFT 추천
 ## ❗ 주제 설명
-> <p align="center"><img src="https://user-images.githubusercontent.com/58590260/172523159-8ae4c1c3-0b85-450b-93a3-9823813ee151.png" width=500><br>
-> 1시간마다 거래 데이터를 수집하여 NFT 특성 데이터와 함께 모델을 훈련하고<br>
-> 사용자에게 예측가격을 제공하고 저평가 된 NFT를 추천합니다 <br>
-> 해당 NFT와 특성이 비슷한 NFT 아이템들을 사용자에게 추가 정보로 제공합니다</p>
+> <p align="center">
+> <img src="https://user-images.githubusercontent.com/58590260/172523159-8ae4c1c3-0b85-450b-93a3-9823813ee151.png" width=500><br>
+> NFT의 많은 관심에 비해 NFT를 처음 접한 사용자들은 여전히 NFT의 가격이 적절한 지 판단하기 어렵습니다.<br>
+ > 이 프로젝트에서는 <b>1시간마다 거래 데이터를 수집</b>하여 NFT 특성 데이터와 함께 모델을 훈련하고<br>
+> 사용자에게 <b>예측가격</b>을 제공하고 저평가 된 NFT를 추천합니다 <br>
+> <b>해당 NFT와 특성이 비슷한 NFT 아이템</b>들을 사용자에게 추가 정보로 제공합니다</p>
 
 
 ## 👋 팀원 소개
