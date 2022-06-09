@@ -1,0 +1,25 @@
+pipeline {
+	agent any
+		stages {
+			stage('Clone Repository') {
+			steps {
+			checkout scm
+			}
+		}
+		stage('Build Image') {
+			steps {
+			sh 'docker-compose build'
+			}
+		}
+		stage('Run Images') {
+			steps {
+			sh 'docker-compose up'
+			}
+		}
+		stage('Testing'){
+			steps {
+				echo 'Process Complete...'
+			}
+		}
+	}
+} 
