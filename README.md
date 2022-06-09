@@ -45,7 +45,7 @@ selenium-stealth 1.0.6
 </p>
 
 ## ⏲ 서비스 아키텍처
-<p align="center"><img src="https://user-images.githubusercontent.com/58590260/172658947-10f37269-6237-4aa7-96a6-3dd07b201ff7.png" width=700></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/58590260/172881362-c8b45d10-5fce-48e5-a95a-c37c0e9de5d2.png" width=700></p>
 
 
 ## 🖼️ Result
