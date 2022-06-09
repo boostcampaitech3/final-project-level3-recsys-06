@@ -1,5 +1,5 @@
 # 🍃 Airflow
-> <p align="center"><img src="https://user-images.githubusercontent.com/58590260/172595946-f9eb17d2-0043-4eb0-abf0-bcd83eebc0f0.png" height=200><br>
+> <p align="center"><img src="https://user-images.githubusercontent.com/58590260/172881187-dd018415-044a-4e80-8ff7-0c2a73dd7570.png" height=200><br>
 > Airflow을 사용하여 데이터 수집, 전처리, 훈련, 예측 작업을 연결합니다<br>
 > 1시간 마다 작업을 반복합니다</p>
 ## 0️⃣ 워크플로우
