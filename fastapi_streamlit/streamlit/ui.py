@@ -2,12 +2,10 @@ from typing import List
 from collections import OrderedDict
 import streamlit as st
 import requests
-import emoji
 
 def delete_none(datas: dict):
     will_be_removed = []
     for i in OrderedDict(datas):
-        print(i)
         if i=='token_id':
             datas['Token ID']=datas.pop(i)
         elif i=='artifact':
@@ -145,10 +143,10 @@ if 'NFT_name' not in st.session_state:
     st.session_state.idx = -1
 # sidebar
 st.session_state.NFT_name = st.sidebar.selectbox('Please select in selectbox!',
-        ('Main','Otherdeed for Otherside', 'Azuki', 'Bored Ape Yacht Club','Test'))
+        ('Main','Otherdeed for Otherside', 'Azuki(추가예정)', 'Bored Ape Yacht Club(추가예정)'))
 if st.session_state.NFT_name == 'Main':
     st.header('[ NFT Collections ]')
-    st.write('')
+    st.write('저희는 다음과 같은 Collection을 추천할 것입니다.')
     st.write('')
     st.write('')
     Main_column0=st.columns(2)
@@ -156,11 +154,11 @@ if st.session_state.NFT_name == 'Main':
         st.subheader('Otherdeed for Otherside')
         st.image('https://lh3.googleusercontent.com/yIm-M5-BpSDdTEIJRt5D6xphizhIdozXjqSITgK4phWq7MmAU3qE7Nw7POGCiPGyhtJ3ZFP8iJ29TFl-RLcGBWX5qI4-ZcnCPcsY4zI=s168')
     with Main_column0[1]:
-        st.subheader('Azuki')
+        st.subheader('Azuki(추가예정)')
         st.image('https://lh3.googleusercontent.com/H8jOCJuQokNqGBpkBN5wk1oZwO7LM8bNnrHCaekV2nKjnCqw6UB5oaH8XyNeBDj6bA_n1mjejzhFQUP3O1NfjFLHr3FOaeHcTOOT=s168')
     Main_column1=st.columns(2)
     with Main_column1[0]:
-        st.subheader('Bored Ape Yacht Club')
+        st.subheader('Bored Ape Yacht Club(추가예정)')
         st.image('https://lh3.googleusercontent.com/Ju9CkWtV-1Okvf45wo8UctR-M9He2PjILP0oOvxE89AyiPPGtrR3gysu1Zgy0hjd2xKIgjJJtWIc0ybj4Vd7wv8t3pxDGHoJBzDB=s168')
 
 if st.session_state.NFT_name == 'Otherdeed for Otherside':
