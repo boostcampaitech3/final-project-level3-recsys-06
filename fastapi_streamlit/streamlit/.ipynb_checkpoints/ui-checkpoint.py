@@ -225,7 +225,7 @@ if st.session_state.NFT_name == 'Otherdeed for Otherside':
         main_c = st.columns(2)
         with main_c[0]:
             st.image(image_link)
-        
+            
         with main_c[1]:
             for a in token_info.keys():
                 st.write(f' - {a} : {token_info[a]}')
